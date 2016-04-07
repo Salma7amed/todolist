@@ -1,0 +1,16 @@
+{% extends "todolist/base.html" %}
+
+{% block body %}
+<form method="post" class="form">
+    {% csrf_token %}
+    <div class="form-group"> 
+	    <label class="control-label">{{form.username.label_tag}} *</label>
+	        {{form.username}}
+    </div>
+    <div class="form-group"> 
+        <label class="control-label">{{form.password.label_tag}} *</label> 
+            {{form.password}}
+    </div>
+    <button type="submit" name="submit" class="btn btn-info">Sign in</button> 
+</form>
+{% endblock %}

@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-{% load bootstrap3 %}
+{% load staticfiles %}
 <html>
 <head>
-	{% bootstrap_css %}
+	<link href="{% static 'todolist/css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
 	<title>Todo List</title>
 </head>
 <body>
-{% block body %}
-
-{% endblock body %}
-{% bootstrap_javascript %}
+	{% block body %}
+	<h2> You've got some tasks to finish </h2>
+	{% endblock body %}
+	<a href="{% url 'users:signout' %}"> Sign Out</a>
+	<script src="{% static 'todolist/js/jquery-2.2.3.min.js' %}"></script>
+	<script src="{% static 'todolist/js/bootstrap.min.js' %}"></script>
 </body>
 </html>
