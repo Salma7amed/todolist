@@ -1,14 +1,44 @@
 {% extends "todolist/base.html" %}
 
 {% block body %}
-	<form action="/task/create/" method="post">
+	<form id="create_task" class="margin-tb-10" action="/task/create/" method="post">
 	    {% csrf_token %}
-	    {{ form }}
-	    <input type="submit" value="Submit" />
+	   	<div class="input-group">
+	   		<span class="input-group-addon">
+	   			<i class="glyphicon glyphicon-plus"></i>
+	   		</span>          
+	    	{{ form.title }}
+		</div>
+	   <button type="submit" name="submit" class="btn btn-success hide">Add</button> 
 	</form>
-	<br/>
-	{% for task in usertasks %}
-		{{task}}
-	{% endfor %}
-	<br/>
-{% endblock %}
+	<div class="list-tasks">
+		<ul id="todo_list" class="list-group checked-list-box">
+		{% for task in todotasks %}
+			<li id="task_{{task.id}}" class="list-group-item" data-taskid={{task.id}}>
+				<input class="task-item" type="checkbox">
+				<span class="task-title">{{task}}</span>
+			</li>
+		{% empty %}
+		<div id="empty_todolist_info" class="alert alert-info" role="alert">
+			<p> You have no tasks to do.</p>
+		</div>
+		{% endfor %}
+		</ul>
+
+		
+		<h4> Completed tasks </h4>
+		
+		<ul id="done_list" class="list-group checked-list-box">
+		{% for task in donetasks %}
+			<li id="task_{{task.id}}" class="list-group-item list-group-item-info" data-taskid={{task.id}} data-checked="true">
+				<input class="task-item" type="checkbox" checked>
+				<span class="task-title">{{task}}</span>
+			</li>
+			{% empty %}
+			<div id="empty_completed_list_info" class="alert alert-info" role="alert">
+				<p> You have no completed tasks.</p>
+			</div>
+		{% endfor %}
+		</ul>
+	</div>
+{% endblock body %}
