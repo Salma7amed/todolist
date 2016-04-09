@@ -1,16 +1,42 @@
 <!DOCTYPE html>
-{% load staticfiles %}
-<html>
+{% load static from staticfiles %}
+<html lang="en">
 <head>
 	<link href="{% static 'todolist/css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
+	<link href="{% static 'todolist/css/style.css' %}" rel="stylesheet" media="screen">
 	<title>Todo List</title>
 </head>
 <body>
-	{% block body %}
-	<h2> You've got some tasks to finish </h2>
-	{% endblock body %}
-	<a href="{% url 'users:signout' %}"> Sign Out</a>
+	<div class="header">
+		<nav class="navbar navbar-default">
+		  	<div class="container-fluid">
+			    <div class="navbar-header">
+			    	<h3> Todo List </h3>
+			    </div>
+	    		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    	        <ul class="nav navbar-nav navbar-right">
+	    	        	<li>
+	    	        		<a href="#" class="btn navbar-btn"><b>{{request.user}}</b></a>
+	    	        	</li>
+	    	        	<li>
+	    	        		{% if request.user.is_authenticated %}
+	    	        		<a href="{% url 'users:signout' %}" class="btn btn-default navbar-btn">Sign Out</a>
+	    	        		{% endif %}
+	    	        	</li>
+	    	        </ul>
+	            </div>
+			</div>
+		</nav>
+	</div>
+	
+	<div class="container">
+		{% block body %}
+			<h2> You've got some tasks to finish </h2>
+		{% endblock body %}
+	</div>
+
 	<script src="{% static 'todolist/js/jquery-2.2.3.min.js' %}"></script>
 	<script src="{% static 'todolist/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'tasks/js/main.js' %}"></script>
 </body>
 </html>
