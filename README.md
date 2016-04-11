@@ -19,7 +19,7 @@ A simple todo list built in django. The application uses bootstrap, Ajax and MyS
   - Install the project dependencies.
   	- pip install -r requirements.txt in your root project folder.
   - Setup the DATABASE conf
-  	- Create MySQL option file '[db.conf]'(https://github.com/Salma7amed/todolist/blob/master/db.cnf.dist) in home directory
+  	- Create MySQL option file ['db.conf'](https://github.com/Salma7amed/todolist/blob/master/db.cnf.dist) in home directory
   - Create the new models in the app
   	- python manage.py makemigrations tasks
   - Run database migrate
